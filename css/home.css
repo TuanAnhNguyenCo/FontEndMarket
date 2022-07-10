@@ -1,0 +1,16 @@
+#content{
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+}
+.category div{
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    text-align: left;
+    margin: 10px 0;
+}
+.category div span{
+   margin-left: 20px;
+}
+.category div input{
+    border-radius: -50px;
+ }

@@ -1,27 +1,36 @@
-var api = "https://ee30-58-187-157-221.ap.ngrok.io";
+var api = "https://adda-58-187-157-221.ap.ngrok.io";
 
-
+// show data in home
 $(document).ready(function() {
-  $("#login_form").submit(function(e){
-      e.preventDefault(e);
-      
-      $.ajax({
-        url: api+'/authenticate',
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            username: $("#username").val(),
-            password: $("#password").val()
-        },
-        success: function (data) {
-          window.localStorage.setItem('token', data['jwt'])
-          window.location.replace("http://127.0.0.1:8088/web/home.html");
-      },
-      error: function (e) {
-         alert("Error")
+        $.ajax({
+          url: api+'/api/v1/home',
+          type: 'GET',
+          dataType: 'json',
+          success: function (data) {
+            let categoryList = ""
+            data['categoryList'].forEach(category => {
+                categoryList+=`<div class="category_checkbox">
+                                    <span>${category['name']}</span>
+                                    <input type="radio" name = "category" class='selectCategory' value = '${category['id']}'>
+                               </div>`
+            });
+            $(".category").html(categoryList)  
 
-      }})
+            // Lấy id của danh mục nếu click vào
+            $(document).ready(function() {
+                $('.category_checkbox .selectCategory').change(function() {
+                    // Lấy giá trị của thẻ đc check
+                    alert(this.value);
+                });
+            }); 
+        },
+        error: function (e) {
+            console.log(e)
   
+        }})
   });
-});
+
+
+
+
 
