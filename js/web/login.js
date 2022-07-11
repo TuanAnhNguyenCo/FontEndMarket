@@ -1,4 +1,5 @@
-var api = "https://adda-58-187-157-221.ap.ngrok.io";
+var api = "http://localhost:8080";
+
 
 $(document).ready(function() {
   $("#login_form").submit(function(e){
@@ -20,6 +21,7 @@ $(document).ready(function() {
          alert("Error")
 
       }})
+      
   
   });
 });
